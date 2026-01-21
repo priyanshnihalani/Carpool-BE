@@ -77,6 +77,13 @@ Login here: http://localhost5174:/login
 
         return userRepo.deleteById(id);
     }
+
+    async updateUser(id, data) {
+        const user = await userRepo.findById(id);
+        if (!user) throw new Error("User not found");
+
+        return userRepo.update(id, data);
+    }
 }
 
 module.exports = new UserService();

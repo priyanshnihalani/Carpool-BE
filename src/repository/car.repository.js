@@ -8,13 +8,13 @@ class CarRepo {
 
   findByBranch(branchId) {
     return Car.findAll({
-      where: { BranchId: branchId },
+      where: { BranchId: branchId, isDeleted: false },
       include: [{ model: Branch, attributes: ["name"] }]
     });
   }
 
   findById(id) {
-    return Car.findByPk(id);
+    return Car.findOne({ where: { id, isDeleted: false } });
   }
 
   updateStatus(id, status) {
@@ -22,6 +22,14 @@ class CarRepo {
       { status },
       { where: { id } }
     );
+  }
+
+  update(id, data) {
+    return Car.update(data, { where: { id } });
+  }
+
+  delete(id) {
+    return Car.update({ isDeleted: true }, { where: { id } });
   }
 }
 

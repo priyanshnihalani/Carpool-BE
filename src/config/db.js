@@ -1,13 +1,13 @@
 const { Sequelize } = require("sequelize");
 
 const sequelize = new Sequelize(
-  "carpool",     
-  "postgres",        
-  "postgres",        
+  "carpool",
+  "postgres",
+  "9302",
   {
     host: "localhost",
     dialect: "postgres",
-    logging: false    
+    logging: false
   }
 );
 

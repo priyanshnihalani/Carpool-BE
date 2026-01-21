@@ -46,3 +46,12 @@ exports.deleteUser = async (req, res) => {
         res.status(404).json({ success: false, message: err.message });
     }
 };
+
+exports.updateUser = async (req, res) => {
+    try {
+        await userService.updateUser(req.params.id, req.body);
+        res.json({ success: true, message: "User updated" });
+    } catch (err) {
+        res.status(404).json({ success: false, message: err.message });
+    }
+};

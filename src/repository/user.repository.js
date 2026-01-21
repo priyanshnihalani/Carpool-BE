@@ -6,19 +6,23 @@ class UserRepo {
   }
 
   findAll() {
-    return User.findAll({where: {role: "user"}, attributes: { exclude: ["password"] } });
+    return User.findAll({ where: { role: "user", isDeleted: false }, attributes: { exclude: ["password"] } });
   }
 
   findById(id) {
-    return User.findByPk(id, { attributes: { exclude: ["password"] } });
+    return User.findOne({ where: { id, isDeleted: false }, attributes: { exclude: ["password"] } });
   }
 
   findByEmail(email) {
-    return User.findOne({ where: { email } });
+    return User.findOne({ where: { email, isDeleted: false } });
   }
 
   deleteById(id) {
-    return User.destroy({ where: { id } });
+    return User.update({ isDeleted: true }, { where: { id } });
+  }
+
+  update(id, data) {
+    return User.update(data, { where: { id } });
   }
 }
 
