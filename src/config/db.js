@@ -1,11 +1,11 @@
 const { Sequelize } = require("sequelize");
 
 const sequelize = new Sequelize(
-  "carpool",
-  "postgres",
-  "9302",
+  "tech-carpool",
+  "tehrover-carpool",
+  "techrover@carpool#2026",
   {
-    host: "localhost",
+    host: "44.238.229.98",
     dialect: "postgres",
     logging: false
   }
